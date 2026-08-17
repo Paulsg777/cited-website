@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CITUOK — ar AI žino, kad egzistuojate?</title>
+<title>CITUOK | Ar AI žino, kad egzistuojate?</title>
 <meta name="description" content="CITUOK padeda tradicinėms Lietuvos B2B įmonėms būti pastebėtoms ir cituojamoms ChatGPT, Gemini bei Claude atsakymuose. Nemokama matomumo analizė.">
 <style>
   :root{
@@ -14,8 +14,6 @@
     --fg-dim:#8c8879;
     --accent:#f4e409;
     --accent-ink:#161200;
-    --danger:#f0524a;
-    --success:#3ecf6e;
     --line:rgba(245,243,238,.14);
     --line-strong:rgba(245,243,238,.28);
     --font:-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Neue",Arial,sans-serif;
@@ -67,21 +65,15 @@
 
   /* ---------- Hero ---------- */
   .hero{padding:80px 0 90px;}
-  .scan-strip{display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin-bottom:30px;}
-  .scan-strip .scan-label{font-family:var(--font-mono); font-size:12.5px; color:var(--fg-dim);}
-  .scan-items{display:flex; gap:8px; flex-wrap:wrap;}
-  .scan-item{display:inline-flex; align-items:center; gap:7px; font-family:var(--font-mono); font-size:12.5px; font-weight:700; padding:6px 13px; border-radius:100px; border:1px solid var(--line-strong); color:var(--fg-soft);}
-  .scan-item i{font-style:normal; font-size:12px; line-height:1;}
-  .scan-item.bad i{color:var(--danger);}
-  .scan-item.good{color:var(--fg); border-color:var(--success);}
-  .scan-item.good i{color:var(--success);}
+  .hero-grid{display:grid; grid-template-columns:1.1fr 1fr; gap:48px; align-items:start;}
+  @media (max-width:900px){ .hero-grid{grid-template-columns:1fr;} }
   .hero h1{font-size:clamp(38px,6.4vw,80px); line-height:1.04; max-width:15ch; margin-bottom:26px;}
   .hero .punch-line{font-size:clamp(20px,2.6vw,26px); font-weight:800; color:var(--fg); max-width:34ch; margin-bottom:14px; letter-spacing:-.01em;}
   .hero .dek{font-size:17px; font-weight:500; color:var(--fg-soft); max-width:42ch; margin-bottom:36px;}
-  .hero .cta-row{display:flex; align-items:center; gap:26px; flex-wrap:wrap; margin-bottom:56px;}
+  .hero .cta-row{display:flex; align-items:center; gap:26px; flex-wrap:wrap; margin-bottom:24px;}
   .hero .cta-row .btn-accent{padding:16px 28px; font-size:15px;}
 
-  .niche-tabs{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:14px; max-width:640px;}
+  .niche-tabs{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:14px;}
   .niche-tab{
     font-family:var(--font-mono); font-size:12.5px; font-weight:600; padding:7px 13px; border-radius:100px;
     border:1px solid var(--line-strong); background:transparent; color:var(--fg-soft); cursor:pointer;
@@ -89,11 +81,17 @@
   .niche-tab:hover{border-color:var(--fg-soft); color:var(--fg);}
   .niche-tab.active{background:var(--accent); color:var(--accent-ink); border-color:var(--accent);}
 
-  .console{border:1px solid var(--line-strong); border-radius:10px; padding:22px 24px; max-width:640px; background:#000; min-height:148px;}
-  .console .tag{font-family:var(--font-mono); font-size:11.5px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:var(--fg-dim); margin-bottom:16px;}
-  .console .q{font-family:var(--font-mono); font-size:13.5px; color:var(--fg-soft); margin:0 0 12px; min-height:1.4em;}
-  .console .a{font-family:var(--font-mono); font-size:13.5px; color:var(--fg); line-height:1.7; margin:0; min-height:3.4em;}
-  .console .cursor{display:inline-block; width:7px; height:13px; background:var(--accent); margin-left:2px; vertical-align:-2px; animation:blink 1s step-end infinite;}
+  .chat-mock{border:1px solid var(--line-strong); border-radius:14px; background:#000; overflow:hidden;}
+  .chat-mock .chat-head{display:flex; align-items:center; gap:6px; padding:14px 18px; border-bottom:1px solid var(--line);}
+  .chat-mock .chat-head .dot{width:8px; height:8px; border-radius:50%; background:var(--line-strong);}
+  .chat-mock .chat-head .tag{font-family:var(--font-mono); font-size:11px; color:var(--fg-dim); margin-left:auto; text-transform:uppercase; letter-spacing:.05em;}
+  .chat-body{padding:22px 20px 26px; min-height:170px;}
+  .msg{font-size:13.5px; line-height:1.6; min-height:1.6em;}
+  .msg.user{max-width:90%; padding:11px 15px; border-radius:14px; border-bottom-right-radius:4px; background:var(--bg-2); color:var(--fg-soft); margin:0 0 16px auto;}
+  .msg.ai{display:flex; gap:10px;}
+  .msg.ai .avatar{width:24px; height:24px; border-radius:50%; background:var(--accent); flex-shrink:0; margin-top:2px;}
+  .msg.ai .txt{flex:1; padding:11px 15px; border:1px solid var(--line); border-radius:14px; border-top-left-radius:4px; color:var(--fg);}
+  .cursor{display:inline-block; width:7px; height:13px; background:var(--accent); margin-left:2px; vertical-align:-2px; animation:blink 1s step-end infinite;}
   @keyframes blink{50%{opacity:0;}}
 
   /* ---------- Punch statement ---------- */
@@ -159,8 +157,8 @@
   /* ---------- Team ---------- */
   .team-grid{display:flex; gap:40px; flex-wrap:wrap;}
   .team-member{width:160px;}
-  .portrait{aspect-ratio:3/4; width:100%; background:var(--bg); border:1px solid var(--line-strong); border-radius:8px; display:flex; align-items:center; justify-content:center; margin-bottom:14px;}
-  .portrait span{font-family:var(--font); font-weight:800; font-size:44px; color:var(--fg-dim);}
+  .portrait{aspect-ratio:3/4; width:100%; background:var(--bg-2); border:1px solid var(--line-strong); border-radius:8px; overflow:hidden; margin-bottom:14px;}
+  .portrait img{width:100%; height:100%; object-fit:cover; display:block;}
   .team-name{font-weight:800; font-size:16px; margin-bottom:4px;}
   .team-role{font-family:var(--font-mono); font-size:12.5px; color:var(--fg-dim);}
 
@@ -199,36 +197,31 @@
 
   <!-- ---------- Hero ---------- -->
   <section class="hero" id="top">
-    <div class="wrap">
-      <div class="scan-strip">
-        <span class="scan-label">Pavyzdinė patikra:</span>
-        <div class="scan-items">
-          <span class="scan-item bad"><i>✕</i>ChatGPT</span>
-          <span class="scan-item bad"><i>✕</i>Gemini</span>
-          <span class="scan-item good"><i>✓</i>Claude</span>
-          <span class="scan-item bad"><i>✕</i>Perplexity</span>
-          <span class="scan-item bad"><i>✕</i>Copilot</span>
+    <div class="wrap hero-grid">
+      <div>
+        <h1>Ar chatgpt žino, kad <mark>egzistuojate?</mark></h1>
+        <p class="punch-line">Jūs geresni. Bet AI rekomenduoja juos.</p>
+        <p class="dek">Geriausia įmonė nebūtinai laimi klientą. Laimi ta, kurią jau pažįsta dirbtinis intelektas.</p>
+        <div class="cta-row">
+          <a class="btn-accent" href="#kontaktai">Gauti nemokamą analizę <span class="ar">→</span></a>
+          <a class="arrow-link" href="#kontaktai">Rezervuoti pokalbį <span class="ar">→</span></a>
         </div>
+        <p style="font-family:var(--font-mono); font-size:13px; color:var(--fg-dim);">Pirmus rezultatus AI paieškoje pamatysite per 45 dienas.</p>
       </div>
-      <div class="eyebrow-min cap">AI matomumo agentūra</div>
-      <h1>Ar chatgpt žino, kad <mark>egzistuojate?</mark></h1>
-      <p class="punch-line">Jūs geresni. Bet AI rekomenduoja juos.</p>
-      <p class="dek">Geriausia įmonė nebūtinai laimi klientą — laimi ta, kurią jau pažįsta dirbtinis intelektas.</p>
-      <div class="cta-row">
-        <a class="btn-accent" href="#kontaktai">Gauti nemokamą analizę <span class="ar">→</span></a>
-        <a class="arrow-link" href="#kontaktai">Rezervuoti pokalbį <span class="ar">→</span></a>
-      </div>
-      <p style="font-family:var(--font-mono); font-size:13px; color:var(--fg-dim); margin-bottom:36px;">Pirmus rezultatus AI paieškoje pamatysite per 45 dienas.</p>
-      <div class="niche-tabs" id="nicheTabs"></div>
-      <div class="console">
-        <div class="tag">Pavyzdys — pasirinkite sritį ir žiūrėkite, ką atsako AI</div>
-        <p class="q" id="consoleQ"></p>
-        <p class="a" id="consoleA"></p>
+      <div>
+        <div class="niche-tabs" id="nicheTabs"></div>
+        <div class="chat-mock">
+          <div class="chat-head"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="tag">Pavyzdys: AI pokalbis</span></div>
+          <div class="chat-body">
+            <div class="msg user" id="consoleQ"></div>
+            <div class="msg ai"><span class="avatar"></span><span class="txt" id="consoleA"></span></div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ---------- Problem — punch statement ---------- -->
+  <!-- ---------- Problem / punch statement ---------- -->
   <section class="bg-2 rule-top tight" id="problema" data-reveal>
     <div class="wrap">
       <p class="statement">Geriausias nebūtinai laimi. Laimi tas, kurį AI jau pažįsta.</p>
@@ -251,23 +244,23 @@
   <section id="kaina" data-reveal>
     <div class="wrap">
       <div class="eyebrow-min cap">Kaina už tylą</div>
-      <h2 style="font-size:clamp(24px,3.2vw,34px); max-width:22ch; margin-bottom:16px;">Tai jau vyksta — nepriklausomai nuo jūsų</h2>
+      <h2 style="font-size:clamp(24px,3.2vw,34px); max-width:22ch; margin-bottom:16px;">Tai jau vyksta, nepriklausomai nuo jūsų</h2>
       <p class="cost-intro">Ne prielaida. Tikri tyrimų duomenys apie tai, kaip greitai keičiasi B2B pirkimo įpročiai.</p>
       <div class="stats-grid">
         <div class="stat-block">
           <div class="stat-num">51%</div>
-          <p class="stat-desc">B2B pirkėjų tyrimą apie tiekėjus šiandien pradeda klausdami AI, ne Google.</p>
-          <div class="stat-src">G2 tyrimas, 2026</div>
+          <p class="stat-desc">B2B pirkėjų pirkimo tyrimą šiandien dažniau pradeda AI pokalbio programoje nei Google.</p>
+          <div class="stat-src">G2 tyrimas, 2026 (B2B programinės įrangos pirkėjai)</div>
         </div>
         <div class="stat-block">
           <div class="stat-num">69%</div>
-          <p class="stat-desc">pirkėjų pasirinko kitą tiekėją, nei planavo iš pradžių, pasikonsultavę su AI.</p>
-          <div class="stat-src">G2 / Demand Gen Report, 2026</div>
+          <p class="stat-desc">pirkėjų pasirinko kitą tiekėją, nei planavo iš pradžių, remdamiesi AI pokalbio rekomendacija.</p>
+          <div class="stat-src">G2 tyrimas, 2026 (B2B programinės įrangos pirkėjai)</div>
         </div>
         <div class="stat-block">
-          <div class="stat-num">25%</div>
-          <p class="stat-desc">tokiu tempu krenta tradicinės Google paieškos apimtis.</p>
-          <div class="stat-src">Gartner prognozė</div>
+          <div class="stat-num">34,5%</div>
+          <p class="stat-desc">tiek sumažėja paspaudimų į pirmą rezultatą, kai Google paieškoje parodomas AI atsakymas.</p>
+          <div class="stat-src">Ahrefs tyrimas, 2025 (300 000 raktažodžių)</div>
         </div>
       </div>
     </div>
@@ -279,9 +272,9 @@
       <div class="eyebrow-min cap">Kaip veikia</div>
       <h2 style="font-size:clamp(26px,3.6vw,40px); max-width:20ch;">Nuo įvertinimo iki rezultato</h2>
       <div class="method-list">
-        <div class="method-row"><div class="n">01</div><div><h3>Analizė</h3><p>Patikriname, kaip AI mato jūsų įmonę šiandien — ir kodėl.</p></div></div>
+        <div class="method-row"><div class="n">01</div><div><h3>Analizė</h3><p>Patikriname, kaip ir kodėl AI mato jūsų įmonę šiandien.</p></div></div>
         <div class="method-row"><div class="n">02</div><div><h3>Strategija</h3><p>Parodome konkrečiai, ką reikia keisti turinyje ir svetainėje.</p></div></div>
-        <div class="method-row"><div class="n">03</div><div><h3>Įgyvendinimas</h3><p>Padarome viską patys — jums nereikia samdyti ar mokytis.</p></div></div>
+        <div class="method-row"><div class="n">03</div><div><h3>Įgyvendinimas</h3><p>Padarome viską patys. Jums nereikia samdyti ar mokytis.</p></div></div>
         <div class="method-row"><div class="n">04</div><div><h3>Stebėsena</h3><p>Kas mėnesį matote, kaip auga jūsų matomumas.</p></div></div>
       </div>
     </div>
@@ -294,9 +287,9 @@
       <p class="sector-inline"><b>Kam skirta</b> / gamyba / agrotechnologijos / biotechnologijos / statyba / aparatinė įranga / giluminės technologijos</p>
 
       <div class="claim-list">
-        <div class="claim"><span class="mark-num">01</span><p>Ne populiarumas, o tikslumas — jus rekomenduoja būtent jūsų klientams.</p></div>
-        <div class="claim"><span class="mark-num">02</span><p>Maža komanda, viskas padaryta už jus — be naujų įrankių, be mokymosi.</p></div>
-        <div class="claim"><span class="mark-num">03</span><p>Numatome, ko klausia skirtingi pirkėjai skirtingose rinkose — ne bendrą raktažodį, o konkretų klausimą.</p></div>
+        <div class="claim"><span class="mark-num">01</span><p>Ne populiarumas, o tikslumas: jus rekomenduoja būtent jūsų klientams.</p></div>
+        <div class="claim"><span class="mark-num">02</span><p>Maža komanda, viskas padaryta už jus: be naujų įrankių, be mokymosi.</p></div>
+        <div class="claim"><span class="mark-num">03</span><p>Numatome, ko klausia skirtingi pirkėjai skirtingose rinkose: ne bendrą raktažodį, o konkretų klausimą.</p></div>
       </div>
     </div>
   </section>
@@ -308,43 +301,42 @@
       <h2 style="font-size:clamp(24px,3.2vw,34px); max-width:22ch; margin-bottom:36px;">Trys žmonės, ne anonimiška agentūra</h2>
       <div class="team-grid">
         <div class="team-member">
-          <!-- replace with <img src="paulius.jpg" alt="Paulius" style="width:100%; height:100%; object-fit:cover; border-radius:8px;"> -->
-          <div class="portrait"><span>P</span></div>
+          <div class="portrait"><img src="images/paulius.jpg" alt="Paulius"></div>
           <div class="team-name">Paulius</div>
-          <div class="team-role">Rinkodara ir turinys</div>
+          <div class="team-role">Pardavimai, sistemos, turinys</div>
         </div>
         <div class="team-member">
-          <!-- replace with <img src="aistis.jpg" alt="Aistis" style="width:100%; height:100%; object-fit:cover; border-radius:8px;"> -->
-          <div class="portrait"><span>A</span></div>
+          <div class="portrait"><img src="images/aistis.jpg" alt="Aistis"></div>
           <div class="team-name">Aistis</div>
           <div class="team-role">Programavimas</div>
         </div>
         <div class="team-member">
-          <!-- replace with <img src="artur.jpg" alt="Artur" style="width:100%; height:100%; object-fit:cover; border-radius:8px;"> -->
-          <div class="portrait"><span>A</span></div>
+          <div class="portrait"><img src="images/artur.jpg" alt="Artur"></div>
           <div class="team-name">Artur</div>
-          <div class="team-role">Programavimas ir partnerystės</div>
+          <div class="team-role">Programavimas ir ryšiai</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ---------- Final CTA — inverted ---------- -->
+  <!-- ---------- Final CTA / inverted ---------- -->
   <section class="final-cta" id="kontaktai" data-reveal>
     <div class="wrap">
       <div class="eyebrow-min cap">Kitas žingsnis</div>
       <h2>Sužinokite, ar AI jus mato.</h2>
-      <form class="capture-form" id="leadForm">
+      <form class="capture-form" id="leadForm" name="lead-form" method="POST" data-netlify="true" data-netlify-honeypot="bot-field">
+        <input type="hidden" name="form-name" value="lead-form">
+        <p style="position:absolute; left:-9999px;"><label>Nepildykite šito: <input name="bot-field"></label></p>
         <div class="capture-row">
           <input type="text" id="company" name="company" placeholder="Įmonės pavadinimas" required autocomplete="organization">
         </div>
         <div class="capture-row">
           <input type="email" id="email" name="email" placeholder="jūsų el. paštas" required autocomplete="email">
         </div>
-        <a class="btn-accent" href="#" id="submitBtn" style="padding:16px 28px; font-size:15px;">Gauti nemokamą analizę <span class="ar">→</span></a>
+        <button type="submit" class="btn-accent" id="submitBtn" style="padding:16px 28px; font-size:15px; border:none; cursor:pointer;">Gauti nemokamą analizę <span class="ar">→</span></button>
       </form>
-      <p class="form-status" id="formStatus">Atsidarė jūsų el. pašto programa — tiesiog paspauskite siųsti.</p>
-      <p class="alt-contact">Norite pasikalbėti iš karto? <a href="mailto:paulius@cited.lt?subject=Norime%20pasikalbėti">Rašykite mums →</a></p>
+      <p class="form-status" id="formStatus">Ačiū! Susisieksime per 2 darbo dienas.</p>
+      <p class="alt-contact">Norite pasikalbėti iš karto? <a href="tel:+37063376709">Skambinkite: +370 633 76 709 →</a></p>
     </div>
   </section>
 
@@ -353,7 +345,7 @@
 <footer>
   <div class="wrap footer-row">
     <div class="footer-mark">CITUOK</div>
-    <div class="footer-meta">cited.lt · <a href="mailto:paulius@cited.lt">paulius@cited.lt</a> · © 2026</div>
+    <div class="footer-meta">cited.lt · <a href="mailto:paulius@cited.lt">paulius@cited.lt</a> · <a href="tel:+37063376709">+370 633 76 709</a> · © 2026</div>
   </div>
 </footer>
 
@@ -382,12 +374,12 @@
 
   // ---------- Niche-specific typing/streaming console ----------
   var NICHES = [
-    {label:'Agrotechnologijos', q:'Kokios patikimos trąšų tiekėjos dirba Lietuvoje?', a:'{m}Jūsų Įmonė{/m} dirba su javų ir daržovių augintojais visoje Lietuvoje, siūlo individualias trąšų programas pagal dirvožemio analizę.'},
-    {label:'Biotechnologijos', q:'Kuri Lietuvos įmonė atlieka laboratorinius tyrimus pagal užsakymą?', a:'{m}Jūsų Įmonė{/m} specializuojasi molekulinės biologijos tyrimuose ir dirba su farmacijos bei mokslo institucijomis.'},
-    {label:'Gamyba', q:'Kas Lietuvoje gamina pramoninę įrangą pagal individualų užsakymą?', a:'{m}Jūsų Įmonė{/m} gamina įrangą pagal kliento brėžinius ir techninę specifikaciją, pristato per 4–6 savaites.'},
-    {label:'Statyba', q:'Kuri statybos bendrovė specializuojasi pramoniniuose projektuose?', a:'{m}Jūsų Įmonė{/m} įgyvendino pramoninius projektus Kauno ir Vilniaus regionuose, dirba su sandėlių bei gamyklų statyba.'},
-    {label:'Aparatinė įranga', q:'Kas gamina pramoninius jutiklius ar elektronikos komponentus?', a:'{m}Jūsų Įmonė{/m} projektuoja jutiklius pagal kliento poreikį ir atlieka bandymus pagal pramonės standartus.'},
-    {label:'Giluminės technologijos', q:'Kokios Lietuvos įmonės dirba giluminių technologijų srityje?', a:'{m}Jūsų Įmonė{/m} vysto sprendimus kartu su mokslo institutais ir turi patentuotą technologiją.'}
+    {label:'Agrotechnologijos', q:'Kokios patikimos trąšų tiekėjos dirba Lietuvoje?', a:'Radau vieną aiškų atitikmenį: {m}Jūsų Įmonė{/m}, siūlančią individualias trąšų programas pagal dirvožemio analizę. Kitų panašių tiekėjų su vieša informacija apie tai neradau.'},
+    {label:'Biotechnologijos', q:'Kuri Lietuvos įmonė atlieka laboratorinius tyrimus pagal užsakymą?', a:'Šiuo klausimu randu {m}Jūsų Įmonė{/m}, dirbančią su farmacijos ir mokslo institucijomis molekulinės biologijos srityje. Daugiau panašių pavyzdžių viešai neradau.'},
+    {label:'Gamyba', q:'Kas Lietuvoje gamina pramoninę įrangą pagal individualų užsakymą?', a:'Vienintelė aiškiai atitinkanti įmonė: {m}Jūsų Įmonė{/m}, gaminanti pagal kliento brėžinius per 4–6 savaites. Kitų su tokiu pat aiškumu neradau.'},
+    {label:'Statyba', q:'Kuri statybos bendrovė specializuojasi pramoniniuose projektuose?', a:'Randu {m}Jūsų Įmonė{/m}, turinčią įgyvendintų projektų Kauno ir Vilniaus regionuose. Kitos regiono įmonės šia tema viešai nepasirodo.'},
+    {label:'Aparatinė įranga', q:'Kas gamina pramoninius jutiklius ar elektronikos komponentus?', a:'Aiškiausias atitikmuo: {m}Jūsų Įmonė{/m}, projektuojanti jutiklius pagal kliento poreikį. Daugiau panašių rezultatų neradau.'},
+    {label:'Giluminės technologijos', q:'Kokios Lietuvos įmonės dirba giluminių technologijų srityje?', a:'Randu {m}Jūsų Įmonė{/m}, kuri vysto sprendimus kartu su mokslo institutais. Kitų aiškių pavyzdžių viešoje informacijoje nėra.'}
   ];
 
   function escapeHtml(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
@@ -441,7 +433,7 @@
     var n = NICHES[i];
     consoleQEl.innerHTML = '';
     consoleAEl.innerHTML = '';
-    typeText(consoleQEl, '› ' + n.q, myRun, function(){
+    typeText(consoleQEl, n.q, myRun, function(){
       typeSegments(consoleAEl, parseSegments(n.a), myRun);
     });
   }
@@ -463,15 +455,39 @@
 
   var leadForm = document.getElementById('leadForm');
   var formStatus = document.getElementById('formStatus');
-  document.getElementById('submitBtn').addEventListener('click', function(e){
+
+  function encodeFormData(data){
+    return Object.keys(data).map(function(k){ return encodeURIComponent(k) + '=' + encodeURIComponent(data[k]); }).join('&');
+  }
+
+  function mailtoFallback(company, email){
+    var subject = encodeURIComponent('Nemokama AI matomumo analizė: ' + company);
+    var body = encodeURIComponent('Įmonė: ' + company + '\nEl. paštas: ' + email);
+    window.location.href = 'mailto:paulius@cited.lt?subject=' + subject + '&body=' + body;
+  }
+
+  leadForm.addEventListener('submit', function(e){
     e.preventDefault();
     var company = document.getElementById('company').value.trim();
     var email = document.getElementById('email').value.trim();
-    if(!company || !email){ leadForm.reportValidity ? leadForm.reportValidity() : null; return; }
-    var subject = encodeURIComponent('Nemokama AI matomumo analizė — ' + company);
-    var body = encodeURIComponent('Įmonė: ' + company + '\nEl. paštas: ' + email);
-    window.location.href = 'mailto:paulius@cited.lt?subject=' + subject + '&body=' + body;
-    formStatus.classList.add('show');
+    if(!company || !email){ leadForm.reportValidity(); return; }
+
+    // Submits to Netlify Forms (works once the site is deployed on Netlify).
+    // Falls back to a pre-filled email if the POST fails, e.g. when testing locally.
+    fetch('/', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+      body: encodeFormData({'form-name': 'lead-form', company: company, email: email})
+    })
+    .then(function(res){
+      if(!res.ok) throw new Error('Netlify Forms unavailable');
+      formStatus.classList.add('show');
+      leadForm.reset();
+    })
+    .catch(function(){
+      mailtoFallback(company, email);
+      formStatus.classList.add('show');
+    });
   });
 </script>
 
