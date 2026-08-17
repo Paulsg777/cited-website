@@ -109,6 +109,24 @@
   .contrast-card .cc-sub{font-size:13.5px; color:var(--fg-soft);}
   .contrast-card.good .cc-sub{color:var(--accent-ink); opacity:.75;}
 
+  /* ---------- Pricing ---------- */
+  .price-row{display:flex; align-items:stretch; gap:16px; flex-wrap:wrap; max-width:680px;}
+  .price-arrow{display:flex; align-items:center; justify-content:center; font-size:22px; color:var(--fg-dim); flex-shrink:0;}
+  .price-card{flex:1; min-width:220px; border-radius:10px; padding:26px 24px;}
+  .price-card.step1{border:1px solid var(--line-strong);}
+  .price-card.step2{background:var(--accent); border:1px solid var(--accent);}
+  .price-card .pc-label{font-family:var(--font-mono); font-size:12px; font-weight:700; margin-bottom:14px;}
+  .price-card.step1 .pc-label{color:var(--fg-dim);}
+  .price-card.step2 .pc-label{color:var(--accent-ink); opacity:.65;}
+  .price-card .pc-amount{font-weight:800; font-size:clamp(26px,3vw,32px); letter-spacing:-.01em; margin-bottom:6px;}
+  .price-card .pc-amount span{font-family:var(--font-mono); font-weight:600; font-size:14px;}
+  .price-card.step1 .pc-amount{color:var(--fg);}
+  .price-card.step2 .pc-amount{color:var(--accent-ink);}
+  .price-card .pc-desc{font-size:13.5px;}
+  .price-card.step1 .pc-desc{color:var(--fg-soft);}
+  .price-card.step2 .pc-desc{color:var(--accent-ink); opacity:.75;}
+  @media (max-width:640px){ .price-arrow{transform:rotate(90deg); padding:4px 0;} }
+
   /* ---------- Stats ---------- */
   .cost-intro{font-size:16px; color:var(--fg-soft); max-width:54ch; margin-bottom:32px;}
   .stats-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line); max-width:960px;}
@@ -314,6 +332,27 @@
           <div class="portrait"><img src="images/artur.jpg" alt="Artur"></div>
           <div class="team-name">Artur</div>
           <div class="team-role">Programavimas ir ryšiai</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- Pricing ---------- -->
+  <section class="bg-2" id="kaina-2" data-reveal>
+    <div class="wrap">
+      <div class="eyebrow-min cap">Kaina</div>
+      <h2 style="font-size:clamp(24px,3.2vw,34px); max-width:22ch; margin-bottom:30px;">Pirmiausia nemokama analizė, tada sprendžiate jūs</h2>
+      <div class="price-row">
+        <div class="price-card step1">
+          <div class="pc-label">01 · Pradžia</div>
+          <div class="pc-amount">0 €</div>
+          <div class="pc-desc">Nemokama AI matomumo analizė. Be įsipareigojimų.</div>
+        </div>
+        <div class="price-arrow">→</div>
+        <div class="price-card step2">
+          <div class="pc-label">02 · Partnerystė</div>
+          <div class="pc-amount">1 000–2 000 € <span>/ mėn.</span></div>
+          <div class="pc-desc">Kai nuspręsite tęsti, dirbame kartu kiekvieną mėnesį.</div>
         </div>
       </div>
     </div>
