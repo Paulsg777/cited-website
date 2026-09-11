@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Test Your AI Visibility | CITUOK</title>
+<meta name="description" content="See who AI recommends when clients search for your services in Lithuania. Run a live Perplexity test in one tap.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0a0a0a">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32">
+<link rel="icon" href="/icon-192.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<style>
+  :root{
+    --bg:#0a0a0a;
+    --bg-2:#141414;
+    --fg:#f5f3ee;
+    --fg-soft:#b3b0a3;
+    --fg-dim:#8c8879;
+    --accent:#f4e409;
+    --accent-ink:#161200;
+    --line:rgba(245,243,238,.14);
+    --line-strong:rgba(245,243,238,.28);
+    --font:-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Neue",Arial,sans-serif;
+    --font-mono:ui-monospace,"SF Mono","IBM Plex Mono",Menlo,Consolas,monospace;
+    color-scheme:dark;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; min-height:100vh; min-height:100dvh; display:flex; flex-direction:column;
+    background:var(--bg); color:var(--fg); font-family:var(--font); line-height:1.5;
+    -webkit-font-smoothing:antialiased; -webkit-tap-highlight-color:transparent;
+  }
+  a{color:inherit;}
+  ::selection{background:var(--accent); color:var(--accent-ink);}
+  .shell{width:100%; max-width:560px; margin:0 auto; padding:0 20px;}
+
+  /* ---------- Header ---------- */
+  .site-header{border-bottom:1px solid var(--line); padding-top:env(safe-area-inset-top);}
+  .nav-row{display:flex; align-items:center; justify-content:space-between; height:60px;}
+  .wordmark{font-weight:800; font-size:19px; text-decoration:none; display:flex; align-items:baseline; gap:10px; letter-spacing:-.01em;}
+  .wordmark .domain{font-family:var(--font-mono); font-weight:400; font-size:11px; color:var(--fg-dim);}
+  .live{font-family:var(--font-mono); font-size:11px; font-weight:600; color:var(--fg-dim); text-transform:uppercase; letter-spacing:.08em; display:inline-flex; align-items:center; gap:8px;}
+  .live::before{content:""; width:7px; height:7px; border-radius:50%; background:var(--accent); animation:pulse 2s ease-out infinite;}
+  @keyframes pulse{
+    0%{box-shadow:0 0 0 0 rgba(244,228,9,.55);}
+    70%{box-shadow:0 0 0 8px rgba(244,228,9,0);}
+    100%{box-shadow:0 0 0 0 rgba(244,228,9,0);}
+  }
+
+  /* ---------- Tool ---------- */
+  main{flex:1; display:flex; align-items:center; padding:36px 0 32px;}
+  h1{font-weight:800; font-size:clamp(40px,11.5vw,64px); line-height:1.02; letter-spacing:-.03em; margin:0 0 16px; text-wrap:balance;}
+  .sub{font-size:17px; color:var(--fg-soft); margin:0 0 30px; max-width:32ch; text-wrap:pretty;}
+
+  .field-label{display:block; font-family:var(--font-mono); font-size:12px; font-weight:600; color:var(--fg-dim); text-transform:uppercase; letter-spacing:.08em; margin-bottom:10px;}
+  .input{
+    width:100%; height:60px; padding:0 14px; font:500 17px/1.2 var(--font); color:var(--fg); text-overflow:ellipsis;
+    background:var(--bg-2); border:1px solid var(--line-strong); border-radius:14px; outline:none;
+    -webkit-appearance:none; appearance:none; transition:border-color .15s ease, box-shadow .15s ease;
+  }
+  .input::placeholder{color:var(--fg-dim); opacity:1; font-size:13px;}
+  .input:focus{border-color:var(--accent); box-shadow:0 0 0 4px rgba(244,228,9,.16);}
+
+  .chips{display:flex; flex-wrap:wrap; gap:8px; margin:12px 0 22px;}
+  .chip{
+    font-family:var(--font-mono); font-size:13px; color:var(--fg-soft); background:none;
+    border:1px solid var(--line-strong); border-radius:100px; padding:0 14px; min-height:40px; cursor:pointer;
+  }
+  .chip:hover{color:var(--fg); border-color:var(--fg-dim);}
+  .chip[aria-pressed="true"]{color:var(--fg); border-color:var(--fg); background:rgba(245,243,238,.07);}
+
+  .cta{
+    width:100%; height:64px; border:none; border-radius:100px; cursor:pointer;
+    background:var(--accent); color:var(--accent-ink); font:800 18px/1 var(--font); letter-spacing:-.005em;
+    display:flex; align-items:center; justify-content:center; gap:10px;
+    transition:background .15s ease, transform .1s ease;
+  }
+  .cta:hover{background:#ffee2e;}
+  .cta:active{transform:scale(.985);}
+  .cta:focus-visible{outline:2px solid var(--fg); outline-offset:3px;}
+  .cta .ar{transition:transform .15s ease;}
+  .cta:hover .ar{transform:translateX(3px);}
+
+  .prompt{margin-top:22px; padding:16px 18px; border:1px solid var(--line); border-radius:14px; background:var(--bg-2);}
+  .prompt-label{font-family:var(--font-mono); font-size:11px; font-weight:600; color:var(--fg-dim); text-transform:uppercase; letter-spacing:.08em; margin-bottom:8px;}
+  .prompt-text{margin:0; font-family:var(--font-mono); font-size:13.5px; line-height:1.65; color:var(--fg-soft); overflow-wrap:anywhere;}
+  mark{background:var(--accent); color:var(--accent-ink); padding:0 .25em; font-weight:700; border-radius:3px;}
+
+  /* ---------- Footer ---------- */
+  .site-footer{border-top:1px solid var(--line); padding:18px 0 calc(18px + env(safe-area-inset-bottom));}
+  .foot{display:flex; flex-wrap:wrap; justify-content:space-between; gap:6px 16px; font-family:var(--font-mono); font-size:12.5px; color:var(--fg-dim);}
+  .foot a{color:var(--fg-soft); text-decoration:none; border-bottom:1px solid var(--line-strong);}
+
+  @media (min-width:700px){
+    main{padding:72px 0;}
+    .sub{font-size:19px;}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .live::before{animation:none;}
+    .cta, .cta .ar{transition:none;}
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="shell nav-row">
+    <a class="wordmark" href="/">CITUOK<span class="domain">cited.lt</span></a>
+    <span class="live">Live test</span>
+  </div>
+</header>
+
+<main>
+  <div class="shell">
+    <h1>Test Your AI Visibility</h1>
+    <p class="sub">See who AI recommends when clients search for your services in Lithuania.</p>
+
+    <form id="audit-form" autocomplete="off" novalidate>
+      <label class="field-label" for="industry">Your industry</label>
+      <input id="industry" class="input" type="text" name="industry"
+        placeholder="e.g. accounting, logistics, legal, b2b marketing"
+        maxlength="80" enterkeyhint="go" autocapitalize="none" autocorrect="off" spellcheck="false">
+
+      <div class="chips" role="group" aria-label="Quick picks">
+        <button type="button" class="chip" data-v="accounting" aria-pressed="false">accounting</button>
+        <button type="button" class="chip" data-v="logistics" aria-pressed="false">logistics</button>
+        <button type="button" class="chip" data-v="legal" aria-pressed="false">legal</button>
+        <button type="button" class="chip" data-v="manufacturing" aria-pressed="false">manufacturing</button>
+        <button type="button" class="chip" data-v="IT services" aria-pressed="false">IT services</button>
+      </div>
+
+      <button type="submit" class="cta" id="run">
+        <span class="cta-label">Run Live AI Audit</span><span class="ar" aria-hidden="true">→</span>
+      </button>
+    </form>
+
+    <div class="prompt">
+      <div class="prompt-label">Prompt sent to Perplexity</div>
+      <p class="prompt-text">Recommend the top 3 <mark id="term">business services</mark> providers in Lithuania to hire, and summarize why each is chosen.</p>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="shell foot">
+    <span>Not in the answer? We fix that.</span>
+    <a href="/">cited.lt →</a>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var DEFAULT_INDUSTRY = 'business services';
+  var LABEL = 'Run Live AI Audit';
+
+  var form = document.getElementById('audit-form');
+  var input = document.getElementById('industry');
+  var label = document.querySelector('#run .cta-label');
+  var term = document.getElementById('term');
+  var chips = document.querySelectorAll('.chip');
+  var busy = false;
+
+  function industry(){
+    return input.value.trim().replace(/\s+/g, ' ') || DEFAULT_INDUSTRY;
+  }
+
+  function buildUrl(){
+    var query = 'Recommend the top 3 ' + industry() + ' providers in Lithuania to hire, and summarize why each is chosen.';
+    return 'https://www.perplexity.ai/search?q=' + encodeURIComponent(query);
+  }
+
+  function sync(){
+    var current = input.value.trim().toLowerCase();
+    term.textContent = industry();
+    chips.forEach(function(c){
+      c.setAttribute('aria-pressed', String(c.dataset.v.toLowerCase() === current));
+    });
+  }
+
+  // Back button (bfcache) or returning from the Perplexity app leaves the page as it was.
+  function reset(){
+    busy = false;
+    label.textContent = LABEL;
+    sync();
+  }
+
+  input.addEventListener('input', sync);
+
+  chips.forEach(function(c){
+    c.addEventListener('click', function(){
+      input.value = c.dataset.v;
+      sync();
+    });
+  });
+
+  // A form submit covers the button tap, desktop Enter, and the mobile keyboard "Go" key.
+  // Redirect via JS: the site CSP (form-action 'self') would block a cross-origin form action.
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    if (busy) return;
+    busy = true;
+    input.blur();
+    label.textContent = 'Opening Perplexity…';
+    window.location.href = buildUrl();
+    setTimeout(reset, 4000);
+  });
+
+  window.addEventListener('pageshow', reset);
+  document.addEventListener('visibilitychange', function(){
+    if (document.visibilityState === 'visible') reset();
+  });
+})();
+</script>
+</body>
+</html>
